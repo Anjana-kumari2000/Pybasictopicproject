@@ -107,7 +107,9 @@ with open("python_basics.txt", "w") as file:
 
 with open("python_basics.txt", "r") as file:
     print("File Content:\n" + file.read())
-
+ 
+    
+    
 
 
 
