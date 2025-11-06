@@ -1,0 +1,264 @@
+def basic_info():
+    print("Welcome to Basic Programming with Python")
+    name = input("Enter your name: ").strip()
+    input("Enter your father's name: ")
+
+    # Safe age input
+    while True:
+        try:
+            age = int(input("Enter your age: "))
+            if age <= 0:
+                print("Age must be positive. Try again.")
+            else:
+                break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+    print("\nType of age:", type(age))
+    print("Length of name:", len(name))
+
+    # Check age group
+    print("\nChecking age group:")
+    if age < 18:
+        print("You are a minor.")
+    elif age < 60:
+        print("You are an adult.")
+    else:
+        print("You are a senior citizen.")
+    return name, age
+
+
+def arithmetic_operations():
+    try:
+        value1 = int(input("Enter value1: "))
+        value2 = int(input("Enter value2: "))
+
+        print("\nArithmetic Operations:")
+        print("Addition:", value1 + value2)
+        print("Subtraction:", value1 - value2)
+        print("Multiplication:", value1 * value2)
+        try:
+            print("Division:", value1 / value2)
+            print("Modulus:", value1 % value2)
+            print("Floor Division:", value1 // value2)
+        except ZeroDivisionError:
+            print("Division Error: Cannot divide by zero.")
+
+        print("\nRelational Operators:")
+        print(f"{value1} < {value2}: {value1 < value2}")
+        print(f"{value1} > {value2}: {value1 > value2}")
+        print(f"{value1} == {value2}: {value1 == value2}")
+        print(f"{value1} != {value2}: {value1 != value2}")
+        print(f"{value1} <= {value2}: {value1 <= value2}")
+        print(f"{value1} >= {value2}: {value1 >= value2}")
+
+        print("\nBitwise Operators:")
+        print("AND:", value1 & value2)
+        print("OR:", value1 | value2)
+        print("XOR:", value1 ^ value2)
+        print("Left Shift:", value1 << 1)
+        print("Right Shift:", value1 >> 1)
+
+        lst = [1, 5, 20, 23, 55]
+        print("\nMembership Check:")
+        if value1 in lst:
+            print("✅ value1 is present in the list.")
+        else:
+            print("❌ value1 is not present in the list.")
+    except ValueError:
+        print("Invalid input! Please enter only integers.")
+
+
+def even_odd_range():
+    try:
+        start = int(input("Enter the starting number: "))
+        end = int(input("Enter the ending number: "))
+        if start > end:
+            print("Start number must be less than or equal to end number.")
+            return
+
+        print("\nEven numbers:")
+        for i in range(start, end + 1):
+            if i % 2 == 0:
+                print(i, "is EVEN")
+
+        print("\nOdd numbers:")
+        for i in range(start, end + 1):
+            if i % 2 != 0:
+                print(i, "is ODD")
+    except ValueError:
+        print("Invalid input! Please enter numbers only.")
+
+
+def repetition_loop():
+    try:
+        n = int(input("Enter number of repetitions: "))
+        if n <= 0:
+            print("Repetitions must be positive.")
+            return
+        for i in range(n):
+            print(f"This is repetition number {i + 1}")
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+
+def list_and_tuple():
+    fruits = []
+    try:
+        num = int(input("\nHow many fruits do you want to add? "))
+        if num <= 0:
+            print("Number must be greater than zero.")
+            return []
+        for i in range(num):
+            fruit = input(f"Enter fruit {i+1}: ").capitalize()
+            fruits.append(fruit)
+        print("\nFruits List:", fruits)
+        print("Total fruits:", len(fruits))
+        numbers = tuple(range(1, 6))
+        print("Tuple:", numbers)
+        return fruits
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+        return []
+
+
+def lambda_examples():
+    print("\nLambda Examples:")
+    add10 = lambda a: a + 10
+    print("Lambda 1 (a+10):", add10(5))
+
+    add_all = lambda a, b, c: a + b + c
+    print("Lambda 2 (a+b+c):", add_all(4, 5, 6))
+
+    def multiplier(n):
+        return lambda a: a * n
+
+    double = multiplier(2)
+    triple = multiplier(3)
+    print("Double of 10:", double(10))
+    print("Triple of 10:", triple(10))
+
+
+def function_example(name):
+    def greet(user):
+        return f"Hello, {user}! Welcome to Python Programming."
+    print("\nFunction Output:", greet(name))
+
+
+def list_input():
+    a = []
+    try:
+        n = int(input("Enter number of elements: "))
+        if n <= 0:
+            print("Number must be greater than zero.")
+            return
+        for i in range(n):
+            element = input(f"Enter element {i+1}: ")
+            a.append(element)
+        print("List:", a)
+    except ValueError:
+        print("Invalid input! Enter only numbers for count.")
+
+
+def file_handling(name, age, fruits):
+    print("\nFile Handling Example:")
+    try:
+        with open("python_basics.txt", "w") as file:
+            file.write(f"Name: {name}\nAge: {age}\nFruits: {fruits}\nCourse: Python")
+        with open("python_basics.txt", "r") as file:
+            print("File Content:\n" + file.read())
+    except Exception as e:
+        print("Error in file operation:", e)
+
+
+def oop_example(name):
+    class Student:
+        def __init__(self, name, course):
+            self.name = name
+            self.course = course
+
+        def show(self):
+            print(f"Student Name: {self.name}, Course: {self.course}")
+
+    print("\nOOP Example:")
+    s1 = Student(name, "Python Basics")
+    s1.show()
+
+
+# 🌟 Exception Handling Demo 🌟
+def exception_demo():
+    print("\n========== Exception Handling Demo ==========")
+    try:
+        print("1️⃣ Trying Division by Zero:")
+        a = int(input("Enter numerator: "))
+        b = int(input("Enter denominator: "))
+        result = a / b
+    except ZeroDivisionError:
+        print("❌ Error: Cannot divide by zero.")
+    except ValueError:
+        print("❌ Error: Invalid input! Please enter numbers only.")
+    else:
+        print(f"✅ Result = {result}")
+    finally:
+        print("➡️ The 'finally' block always executes (cleanup done).")
+
+    print("\n2️⃣ Trying File Handling Error:")
+    try:
+        with open("nonexistent_file.txt", "r") as f:
+            data = f.read()
+    except FileNotFoundError:
+        print("❌ Error: The file does not exist.")
+    finally:
+        print("➡️ File handling completed (even after error).")
+
+
+# MAIN MENU
+def main():
+    name, age = basic_info()
+    fruits = []
+
+    while True:
+        print("\n===== MAIN MENU =====")
+        print("1. Arithmetic Operations")
+        print("2. Even/Odd Range")
+        print("3. Repetition Loop")
+        print("4. List and Tuple")
+        print("5. Lambda Examples")
+        print("6. Function Example")
+        print("7. Custom List Input")
+        print("8. File Handling")
+        print("9. OOP Example")
+        print("10. Exception Handling (Error Demo)")
+        print("0. Exit")
+
+        choice = input("Enter your choice: ").strip()
+
+        if choice == '1':
+            arithmetic_operations()
+        elif choice == '2':
+            even_odd_range()
+        elif choice == '3':
+            repetition_loop()
+        elif choice == '4':
+            fruits = list_and_tuple()
+        elif choice == '5':
+            lambda_examples()
+        elif choice == '6':
+            function_example(name)
+        elif choice == '7':
+            list_input()
+        elif choice == '8':
+            file_handling(name, age, fruits)
+        elif choice == '9':
+            oop_example(name)
+        elif choice == '10':
+            exception_demo()
+        elif choice == '0':
+            print("\n✅ Exiting program. Goodbye!")
+            break
+        else:
+            print("❌ Invalid choice. Please select a valid option (0–10).")
+
+
+if __name__ == "__main__":
+    main()
